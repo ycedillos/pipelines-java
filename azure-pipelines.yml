@@ -23,5 +23,5 @@ steps:
 #steps:
 - script: |
     echo Starting the build
-    mvn package
+    mvn package -f ConfigFiles/pom.xml
   displayName: 'Build with Maven'
