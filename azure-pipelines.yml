@@ -12,7 +12,7 @@ pool:
 steps:
 - task: Maven@3
   inputs:
-    mavenPomFile: '$(system.defaultWorkingDirectory)/ConfigFiles/pom.xml'
+    mavenPomFile: 'pom.xml'#'$(system.defaultWorkingDirectory)/ConfigFiles/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
