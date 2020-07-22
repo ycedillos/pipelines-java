@@ -10,6 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+#---START: EXAMPLE USING TASK FOR MAVEN
 #- task: Maven@3
 #  inputs:
 #    mavenPomFile: '$(system.defaultWorkingDirectory)/ConfigFiles/pom.xml'
@@ -20,8 +21,21 @@ steps:
 #    publishJUnitResults: false
 #    testResultsFiles: '**/surefire-reports/TEST-*.xml'
 #    goals: 'package'
-#steps:
-- script: |
-    echo Starting the build
-    mvn package -f ConfigFiles/pom.xml
-  displayName: 'Build with Maven'
+#---END: EXAMPLE USING TASK FOR MAVEN
+#---START: EXAMPLE USING SCRIPT TASK (MAVEN). It is not possible to send arguments to start JVM
+#- script: |
+#    echo Starting the build
+#    mvn package -f ConfigFiles/pom.xml
+#  displayName: 'Build with Maven'
+##---END: EXAMPLE USING SCRIPT TASK (MAVEN).
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'build'
